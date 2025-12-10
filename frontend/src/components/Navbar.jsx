@@ -39,7 +39,7 @@ const Navbar = () => {
         token: credentialResponse.credential
       };
 
-      await axios.post('http://localhost:5000/api/login-log', logData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/login-log`, logData);
       console.log('Login logged successfully');
 
     } catch (error) {

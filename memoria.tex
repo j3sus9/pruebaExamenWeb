@@ -3,14 +3,12 @@
 \usepackage[spanish]{babel}
 \usepackage{hyperref}
 \usepackage{listings}
-\usepackage{graphicx}
-\usepackage{geometry}
 \usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{graphicx}
 
-% Configuración de márgenes
 \geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
 
-% Configuración de colores para código
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -37,138 +35,148 @@
 
 \lstset{style=mystyle}
 
+\title{
+    \vspace{2cm}
+    \Huge \textbf{Memoria Técnica: Eventual} \\
+    \vspace{1cm}
+    \Large Ingeniería Web - Curso 2023/24 \\
+    \vspace{0.5cm}
+    \large Universidad de Málaga
+}
+\author{Jesús Repiso}
+\date{\today}
+
 \begin{document}
 
-% Portada
-\begin{titlepage}
-    \centering
-    \vspace*{1cm}
-    
-    {\Large \textbf{Universidad de Málaga}}\\[0.5cm]
-    {\large Departamento de Lenguajes y Ciencias de la Computación}\\[2cm]
-    
-    {\Large Asignatura: Ingeniería Web 2023/24}\\[2cm]
-    
-    {\Huge \textbf{Memoria Técnica: Proyecto Eventual}}\\[3cm]
-    
-    {\Large \textbf{Alumno:} [TU NOMBRE AQUÍ]}\\[2cm]
-    
-    \vfill
-    
-    {\large \today}
-    
-\end{titlepage}
+\maketitle
+\thispagestyle{empty}
+\newpage
 
 \tableofcontents
 \newpage
 
 \section{Despliegue de la Aplicación}
 
-La aplicación "Eventual" ha sido desplegada exitosamente en un proveedor de servicios en la nube pública, permitiendo el acceso remoto a todas sus funcionalidades.
+La aplicación se encuentra desplegada y es accesible públicamente en las siguientes direcciones:
 
-\vspace{0.5cm}
-\noindent
-\textbf{URL del proyecto:} \url{[PONER_AQUI_LA_URL_FINAL_DE_VERCEL_O_RENDER]}
+\begin{itemize}
+    \item \textbf{Frontend (Vercel):} \url{https://prueba-examen-web.vercel.app/}
+    \item \textbf{Backend (Render):} \url{https://eventual-backend.onrender.com}
+\end{itemize}
 
 \section{Tecnologías Utilizadas}
 
-Para el desarrollo de este proyecto se ha utilizado el stack MERN (MongoDB, Express, React, Node.js), complementado con diversas librerías y servicios externos:
+El proyecto ha sido desarrollado utilizando el stack MERN y diversas herramientas modernas:
 
 \begin{itemize}
-    \item \textbf{Frontend:}
+    \item \textbf{Frontend:} React + Vite, React Router, Axios, CSS Modules, React-Leaflet (Mapas), @react-oauth/google.
+    \item \textbf{Backend:} Node.js, Express, Mongoose.
+    \item \textbf{Base de Datos:} MongoDB Atlas.
+    \item \textbf{APIs Externas:} 
     \begin{itemize}
-        \item \textbf{React (Vite):} Biblioteca principal para la interfaz de usuario, utilizando Vite como herramienta de construcción rápida.
-        \item \textbf{Axios:} Cliente HTTP para la comunicación con el backend.
-        \item \textbf{React Router:} Gestión del enrutamiento en el lado del cliente (SPA).
-        \item \textbf{React-Leaflet:} Integración de mapas interactivos.
-        \item \textbf{@react-oauth/google:} Implementación del flujo de autenticación con Google.
+        \item Cloudinary (Gestión de imágenes).
+        \item Google Identity Services (Autenticación OAuth).
+        \item Nominatim OpenStreetMap (Geocoding y Mapas).
     \end{itemize}
-    
-    \item \textbf{Backend:}
-    \begin{itemize}
-        \item \textbf{Node.js:} Entorno de ejecución de JavaScript en el servidor.
-        \item \textbf{Express:} Framework web para la creación de la API REST.
-    \end{itemize}
-    
-    \item \textbf{Base de Datos:}
-    \begin{itemize}
-        \item \textbf{MongoDB (Atlas):} Base de datos NoSQL en la nube.
-        \item \textbf{Mongoose:} ODM para el modelado de datos.
-    \end{itemize}
-    
-    \item \textbf{Servicios Externos:}
-    \begin{itemize}
-        \item \textbf{Cloudinary:} Servicio para el almacenamiento y gestión de imágenes en la nube.
-        \item \textbf{Google OAuth 2.0:} Sistema de autenticación segura.
-        \item \textbf{Nominatim / OpenStreetMap:} API utilizada para servicios de Geocoding (directo e inverso).
-    \end{itemize}
-    
-    \item \textbf{Despliegue:}
-    \begin{itemize}
-        \item \textbf{Frontend:} Vercel.
-        \item \textbf{Backend:} Render / Railway.
-    \end{itemize}
+    \item \textbf{Infraestructura:} Vercel (Frontend), Render (Backend).
 \end{itemize}
 
 \section{Instrucciones de Instalación y Despliegue}
 
+Debido a medidas de seguridad, los archivos de configuración sensibles y las dependencias (\texttt{node\_modules}) han sido excluidos del repositorio mediante \texttt{.gitignore}. A continuación se detallan los pasos para poner en marcha el proyecto tanto en local como en la nube.
+
 \subsection{Ejecución en Local}
-Para ejecutar el proyecto en un entorno de desarrollo local, dado que se entrega en formato comprimido, siga los siguientes pasos:
 
-\begin{lstlisting}[language=bash, caption=Comandos de instalación local]
-# 1. Descomprimir el archivo ZIP y acceder a la carpeta
-cd examenFrontend
+\subsubsection*{Paso 1: Clonado del Repositorio}
+\begin{lstlisting}[language=bash]
+git clone <URL_DEL_REPO>
+cd pruebaExamenWeb
+\end{lstlisting}
 
-# 2. Configuración del Backend
+\subsubsection*{Paso 2: Instalación de Dependencias}
+Es necesario instalar las dependencias tanto para el servidor (backend) como para el cliente (frontend).
+
+\begin{lstlisting}[language=bash]
+# Instalar dependencias del backend
 cd backend
 npm install
-# Crear archivo .env con las variables necesarias (MONGO_URI, etc.)
-node server.js
 
-# 3. Configuración del Frontend (en una nueva terminal)
+# Instalar dependencias del frontend
 cd ../frontend
 npm install
+\end{lstlisting}
+
+\subsubsection*{Paso 3: Configuración de Variables de Entorno}
+Se deben crear manualmente los archivos \texttt{.env} en las carpetas correspondientes.
+
+\textbf{Frontend (\texttt{frontend/.env}):}
+\begin{lstlisting}[language=bash]
+VITE_CLOUDINARY_CLOUD_NAME=dolvo0vvq
+VITE_CLOUDINARY_UPLOAD_PRESET=dolvo0vvq
+# URL del backend local (por defecto puerto 5000 o 3000)
+VITE_API_URL=http://localhost:5000
+\end{lstlisting}
+
+\textbf{Backend (\texttt{backend/.env}):}
+\begin{lstlisting}[language=bash]
+MONGO_URI=mongodb+srv://jesusrepisouma_db_user:jRexvSVo2afPFURl@examenfrontend.6tl8muv.mongodb.net/
+PORT=5000
+\end{lstlisting}
+
+\subsubsection*{Paso 4: Ejecución}
+Para iniciar la aplicación en modo desarrollo:
+
+\begin{lstlisting}[language=bash]
+# Terminal 1: Backend
+cd backend
+npm start
+
+# Terminal 2: Frontend
+cd frontend
 npm run dev
 \end{lstlisting}
 
-\subsection{Despliegue en la Nube}
-El despliegue se ha realizado subiendo el código fuente a los servicios de hosting:
+\subsection{Despliegue en Nube}
+El despliegue se ha realizado conectando el repositorio de GitHub a los servicios de hosting:
 \begin{itemize}
-    \item \textbf{Backend:} Se ha desplegado en Render/Railway. En el panel de control del servicio se han configurado las variables de entorno necesarias (como la URI de MongoDB) y se ha especificado el comando de inicio.
-    \item \textbf{Frontend:} Se ha desplegado en Vercel. Durante el proceso de build, se han configurado las variables de entorno para que el cliente apunte a la URL del backend desplegado en producción.
+    \item \textbf{Vercel (Frontend):} Se importó el proyecto seleccionando la carpeta \texttt{frontend}. En la configuración del proyecto en Vercel, se añadieron las variables de entorno definidas anteriormente.
+    \item \textbf{Render (Backend):} Se creó un Web Service conectado al repositorio, con el directorio raíz en \texttt{backend}. Se configuraron las variables de entorno (\texttt{MONGO\_URI}) en el panel de control de Render.
 \end{itemize}
 
-\section{Credenciales de Acceso a la Base de Datos}
-Para facilitar la verificación del contenido y la estructura de datos generada durante el uso de la aplicación, se proporciona la siguiente URI de conexión directa a la base de datos MongoDB Atlas:
+\section{Credenciales de Acceso}
 
-\begin{lstlisting}[breaklines=true]
-mongodb+srv://jesusrepisouma_db_user:jRexvSVo2afPFURl@examenfrontend.6tl8muv.mongodb.net/
-\end{lstlisting}
+A continuación se proporcionan las credenciales necesarias para la corrección y verificación del proyecto:
 
-\section{Funcionalidad Implementada y Limitaciones}
-
-A continuación se describen los detalles técnicos de las funcionalidades implementadas:
-
-\subsection{Gestión de Eventos}
-Se ha implementado un CRUD completo para la entidad Evento. Cada evento almacena información como nombre, timestamp, lugar, organizador e imagen. Destaca la funcionalidad de \textbf{geocoding automático}: al introducir una dirección en el campo "lugar", el sistema consulta la API de Nominatim para obtener y guardar automáticamente las coordenadas (latitud y longitud).
-
-\subsection{Búsqueda y Proximidad}
-En la página principal, se permite buscar eventos por dirección. El sistema realiza un filtrado basado en la proximidad geográfica, mostrando únicamente aquellos eventos cuya \textbf{distancia euclidiana es menor a 0.2 unidades} respecto a las coordenadas de la dirección buscada.
-
-\subsection{Mapa Interactivo}
-Se ha integrado un mapa utilizando \texttt{react-leaflet}. Este mapa se centra automáticamente en la ubicación buscada por el usuario y muestra marcadores (Markers) en las posiciones de los eventos filtrados, permitiendo una visualización espacial clara de los resultados.
-
-\subsection{Seguridad y Logs}
-La autenticación se gestiona mediante \textbf{Google OAuth 2.0}. 
 \begin{itemize}
-    \item \textbf{Registro de Logs:} Tras cada inicio de sesión exitoso, se realiza una llamada automática al backend para registrar un log de acceso en la base de datos. Este registro incluye el timestamp, el email del usuario y el token de sesión.
-    \item \textbf{Control de Acceso:} Las operaciones de edición y borrado de eventos están protegidas, permitiéndose únicamente si el email del usuario autenticado coincide con el del organizador del evento.
+    \item \textbf{MongoDB URI:} \\
+    \texttt{mongodb+srv://jesusrepisouma\_db\_user:jRexvSVo2afPFURl@examenfrontend.6tl8muv.mongodb.net/}
+    \item \textbf{Cloudinary:}
+    \begin{itemize}
+        \item Cloud Name: \texttt{dolvo0vvq}
+        \item Upload Preset: \texttt{dolvo0vvq}
+    \end{itemize}
 \end{itemize}
 
-\subsection{Imágenes}
-La aplicación permite la subida de imágenes locales. Estas son procesadas y enviadas al servicio \textbf{Cloudinary}, que devuelve una URL pública. Esta URL es la que se almacena finalmente en la base de datos de MongoDB asociada al evento.
+\section{Funcionalidad Implementada}
 
-\subsection{Limitaciones}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\subsection{Búsqueda y Mapa}
+La aplicación permite filtrar eventos basándose en la ubicación. El algoritmo calcula la distancia euclidiana entre la dirección buscada y los eventos disponibles, mostrando solo aquellos que se encuentran a una distancia menor a 0.2 unidades. Los resultados se visualizan en un mapa interactivo con marcadores.
+
+\subsection{Geocoding Automático}
+Al crear o editar un evento, el usuario introduce una dirección textual. El sistema utiliza la API de Nominatim para convertir esta dirección en coordenadas (Latitud/Longitud) de forma transparente, permitiendo su posterior posicionamiento en el mapa.
+
+\subsection{Gestión de Logs y Seguridad}
+Se ha implementado un sistema de autenticación mediante Google OAuth. Cada vez que un usuario inicia sesión, se genera un registro persistente en la colección \texttt{AccessLog} de MongoDB, almacenando:
+\begin{itemize}
+    \item Timestamp del acceso.
+    \item Email del usuario.
+    \item Token de sesión (fragmento).
+\end{itemize}
+
+\subsection{Gestión de Imágenes}
+Las imágenes de los eventos se suben directamente desde el navegador del cliente a Cloudinary, optimizando el ancho de banda del servidor. La URL segura devuelta por Cloudinary es la que se almacena en la base de datos.
+
+\subsection{Restricciones}
+Se han implementado controles de autorización en el frontend y backend. Las operaciones de edición y borrado de eventos están protegidas y restringidas exclusivamente al usuario organizador que creó el evento (verificado mediante email).
 
 \end{document}
